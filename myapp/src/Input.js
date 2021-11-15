@@ -1,13 +1,11 @@
 import { useState, useContext } from 'react';
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import { DropdownButton, Dropdown } from 'react-bootstrap'
+import { Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
 import InputContext from './inputContext.js';
 
 function Input() {
 
   const { setType, setName } = useContext(InputContext)
+  // State to save input text 
   let [name, changeName] = useState("");
 
   // Action when enter key is pressed on input

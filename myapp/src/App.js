@@ -7,6 +7,7 @@ import InputContext from "./inputContext.js";
 
 function App() {
 
+  // States to use with input context
   const [name, setName] = useState('')
   const [type, setType] = useState('movie')
 

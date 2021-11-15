@@ -5,7 +5,8 @@ import InputContext from "./inputContext";
 function Movie() {
 
 	const apiKey = process.env.REACT_APP_API_KEY;
-	const { type, name} = useContext(InputContext);
+	// Get type and name from input context for url
+	const { type, name } = useContext(InputContext);
 	let [movies, setMovies] = useState([]);
 	let [skipFetch, setSkipFetch] = useState(true);
 
@@ -32,7 +33,7 @@ function Movie() {
 				{movies.map((item, i) => 
 				<Row key={i} className='mt-2'>
 					<Col>{item.title}</Col>
-					<Col className="d-flex justify-content-end">Released: {item.year}</Col>
+					<Col className="text-right">Released: {item.year}</Col>
 				</Row>)}
 		</div>
 		);
