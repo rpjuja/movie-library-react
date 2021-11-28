@@ -8,7 +8,9 @@ const InputContext = createContext({
     page: 1,
     setPage: (input) => {},
     totalPages: 1,
-    setTotalPages: (input) => {}
+    setTotalPages: (input) => {},
+    movieDetails: '',
+    setMovieDetails: (input) => {}
 });
 
 export default InputContext;

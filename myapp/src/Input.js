@@ -44,8 +44,7 @@ function Input() {
         onChange={(event) => changeName(event.target.value)}
         onKeyPress={handleKeyPress}
       />
-      <Button type="button"
-      variant="secondary"
+      <Button variant="secondary"
       onClick={clicked}>Search</Button>
     </InputGroup>
   );
