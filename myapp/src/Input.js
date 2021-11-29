@@ -1,13 +1,14 @@
 import { useState, useContext } from 'react';
 import { Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
-import InputContext from './inputContext.js';
+import InputContext from './InputContext';
+import './App.css';
 
 function Input() {
 
   // Get setters from input context
-  const { setType, setName, setPage } = useContext(InputContext)
+  const { type, setType, setName, setPage } = useContext(InputContext);
   // State to save input text 
-  let [name, changeName] = useState("");
+  const [name, changeName] = useState("");
 
   // When user does a search, set name and reset page number to 1
   function clicked() {
@@ -30,11 +31,11 @@ function Input() {
 
   return (
     <InputGroup
-    className="mt-3"
-    style={{display: 'flex', justifyContent: 'center'}} >
+    className="input-group">
       <DropdownButton
         variant="outline-secondary"
-        title=''
+        // Display chosen type by using ternary operator on type
+        title={(type === "movie" ? "Movies" : "Series")}
         onSelect={(event) => selected(event)} >
           <Dropdown.Item eventKey="movie">Movies</Dropdown.Item>
           <Dropdown.Item eventKey="series">Series</Dropdown.Item>

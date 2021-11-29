@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Input from './Input.js';
 import Movie from './Movie.js'
 import Page from './Page.js'
-import CustomModal from "./CustomModal.js";
-import InputContext from "./inputContext.js";
+import CustomModal from './CustomModal.js';
+import InputContext from './InputContext.js';
 
 function App() {
 
@@ -14,21 +14,21 @@ function App() {
   const [type, setType] = useState('movie');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [movieDetails, setMovieDetails] = useState('');
+  const [movieDetails, setMovieDetails] = useState({});
   
   // State to use for showing and hiding the modal
   const [showModal, setShowModal] = useState(false);
 
   return (
       <Container>
-        <h1 style={{"textAlign": "center"}} className="mt-1">Movie Library</h1>
+        <h1 className="header">Movie Library</h1>
         <InputContext.Provider 
         value={{ type, setType, name, setName, page, setPage,
          totalPages, setTotalPages, movieDetails, setMovieDetails, setShowModal }} >
           <Input />
           <Movie />
           <Page />
-          <CustomModal movie={movieDetails}
+          <CustomModal
           show={showModal}
           onHide={() => setShowModal(false)}/>
         </InputContext.Provider>
@@ -37,3 +37,5 @@ function App() {
 }
 
 export default App;
+
+

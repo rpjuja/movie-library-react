@@ -1,24 +1,20 @@
 import { useContext } from 'react';
 import { Button, InputGroup } from 'react-bootstrap';
-import InputContext from './inputContext.js';
+import InputContext from './InputContext';
 
 function Page() {
 
   const { page, setPage, totalPages } = useContext(InputContext);
-  
 
   return (
-    <InputGroup 
-		style={{display: 'flex', justifyContent: 'center'}}
-		className="mt-3">
-      <Button type="submit" 
-			variant="secondary"
+    <InputGroup
+		className="input-group">
+      <Button variant="secondary"
 			className="mr-3"
 			onClick={() => 
 				setPage(prevPage => prevPage - 1)}
 			disabled={page === 1}>Previous</Button>
-      <Button type="submit" 
-			variant="secondary"
+      <Button variant="secondary"
 			onClick={() => 
 				setPage(prevPage => prevPage + 1)}
 			// Disable next page button if page is smaller than total pages

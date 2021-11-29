@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext, useRef } from "react";
-import { Row, Col, Container, Button, Modal } from 'react-bootstrap';
-import InputContext from "./inputContext";
+import { useState, useEffect, useContext, useRef } from 'react';
+import { Row, Col, Container, Button } from 'react-bootstrap';
+import InputContext from './InputContext';
 
 // Check if a specific value changes
 function useCompare (val) {
-	const prevVal = usePrevious(val)
-	return prevVal !== val
+	const prevVal = usePrevious(val);
+	return prevVal !== val;
 }
 
 // Helper function for useCompare
@@ -22,35 +22,12 @@ function Movie() {
 	const apiKey = process.env.REACT_APP_API_KEY;
 	// Get parameters for url from input context
 	const { type, name, page, setMovieDetails, setTotalPages, setShowModal } = useContext(InputContext);
-	let [movies, setMovies] = useState([]);
+	const [movies, setMovies] = useState([]);
 	// State to prevent useEffect running before anything is searched
-	let [skipFetch, setSkipFetch] = useState(true);
+	const [skipFetch, setSkipFetch] = useState(true);
 	// Check if name changes with useCompare
 	const hasNameChanged = useCompare(name);
 
-	function fetchDetails(item) {
-		// Fetch by imdb id saved to an item from movies state
-		fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${item.id}`)
-    	.then((hr) => hr.json())
-    	.then((result) => {
-				console.log(result)
-				// Gather important data to show in modal
-				setMovieDetails({
-					title: result.Title,
-					released: result.Released,
-					plot: result.Plot,
-					genre: result.Genre,
-					runtime: result.Runtime,
-					director: result.Director,
-					actors: result.Actors,
-					writer: result.Writer,
-					poster: result.Poster,
-					rating: result.imdbRating
-				});
-			})
-			.catch(err => console.log(err));
-			setShowModal(true);
-	}
 
   useEffect(() => {
     // Skip fetch when component is originally loaded
@@ -82,17 +59,53 @@ function Movie() {
   }, [apiKey, name, type, page]);
 
 
+	function fetchDetails(item) {
+		// Fetch by imdb id saved to an item from movies state
+		fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${item.id}`)
+    	.then((hr) => hr.json())
+    	.then((result) => {
+			// Gather data to show to user
+			setMovieDetails({
+				title: result.Title,
+				type: result.Type,
+				plot: result.Plot,
+				genre: result.Genre,
+				actors: result.Actors,
+				writer: result.Writer,
+				poster: result.Poster,
+				rating: result.imdbRating
+			});
+			// If searching for a movie, add runtime, release date and director to details
+			if (result.Type === 'movie') {
+				setMovieDetails((prevState) => ({...prevState, runtime: result.Runtime, 
+					released: result.Released, director: result.Director
+			}));
+			} // If searching for a series, add seasons and years produced to details
+			else { 
+				setMovieDetails((prevState) => ({...prevState, seasons: result.totalSeasons,
+				yearsProduced: result.Year
+			}));
+			}
+		})
+		.catch(err => console.log(err));
+		// Display modal
+		setShowModal(true);
+	}
+
+
 	return ( 
 		<Container fluid='true'>
 			{movies.map((item, i) => 
-			<Row key={i} className='mt-2 align-items-center'>
+			<Row key={i}
+			className='row'>
 				<Col md='8' xs='8'>{item.title}</Col>
 				<Col md='2' xs='2'>{item.year}</Col>
-				<Col md='2' xs='2' className='text-right'>
+				<Col md='2' xs='2' 
+				align="right">
 					<Button size='sm'
 					variant='secondary'
-					onClick={() => fetchDetails(item)}>
-						Details</Button></Col>
+					onClick={() => fetchDetails(item)}
+					>Details</Button></Col>
 			</Row>)}
 		</Container>
 		);
