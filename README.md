@@ -12,12 +12,13 @@ Release 1: 2021-11-15 features
 
 Release 2: 2021-11-29 features
 
-- User receives every movie/series matching the title and is able to switch pages and view them all
-- User is able to view details on search results and receive information on a popup window
+- User receives every movie/series matching the title given and is able to view them 10 at a time and switch pages to view more
+- User is able to view details on search results and receives information on a popup window
 - The information on a popup window depends on whether the search is a movie or a series
 
 Known Bugs
 
-- When viewing details of a search result, even if that result doesn't have a poster url the popup window still has a spot for the image but no image is present, instead it says "new" for unknown reason
+- If the search result doesn't have a poster url the popup window still has a spot for the image and instead of a image it displays "new" for an unknown reason
 
+Screencast:
 [![Screencast](https://img.youtube.com/vi/jQWSRtCwsao/3.jpg)](https://www.youtube.com/watch?v=jQWSRtCwsao)
