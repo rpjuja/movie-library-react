@@ -21,4 +21,5 @@ Known Bugs
 - If the search result doesn't have a poster url the popup window still has a spot for the image and instead of a image it displays "new" for an unknown reason
 
 Screencast:
+
 [![Screencast](https://img.youtube.com/vi/jQWSRtCwsao/3.jpg)](https://www.youtube.com/watch?v=jQWSRtCwsao)
