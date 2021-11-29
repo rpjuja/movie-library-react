@@ -20,22 +20,20 @@ function App() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-      <Container>
-        <h1 className="header">Movie Library</h1>
-        <InputContext.Provider 
-        value={{ type, setType, name, setName, page, setPage,
-         totalPages, setTotalPages, movieDetails, setMovieDetails, setShowModal }} >
-          <Input />
-          <Movie />
-          <Page />
-          <CustomModal
-          show={showModal}
-          onHide={() => setShowModal(false)}/>
-        </InputContext.Provider>
-      </Container>
+    <Container>
+      <h1 className="header">Movie Library</h1>
+      <InputContext.Provider 
+      value={{ type, setType, name, setName, page, setPage,
+       totalPages, setTotalPages, movieDetails, setMovieDetails, setShowModal }} >
+        <Input />
+        <Movie />
+        <Page />
+        <CustomModal
+        show={showModal}
+         onHide={() => setShowModal(false)}/>
+      </InputContext.Provider>
+    </Container>
   );
 }
 
 export default App;
-
-

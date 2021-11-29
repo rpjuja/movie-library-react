@@ -2,13 +2,13 @@ import { useState, useEffect, useContext, useRef } from 'react';
 import { Row, Col, Container, Button } from 'react-bootstrap';
 import InputContext from './InputContext';
 
-// Check if a specific value changes
+// Hook for checking if parameter given has changed
 function useCompare (val) {
 	const prevVal = usePrevious(val);
 	return prevVal !== val;
 }
 
-// Helper function for useCompare
+// Helper hook for useCompare
 function usePrevious(value) {
 	const ref = useRef();
 	useEffect(() => {

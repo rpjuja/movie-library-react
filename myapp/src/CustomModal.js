@@ -43,7 +43,7 @@ return (
         <img alt="new"
         width='25%'
         height='auto'
-        src={ movieDetails.poster}/>
+        src={ movieDetails.poster }/>
         <div className="arrange-vertically">
           {/* Determine modal content by type using ternary operator */}
           {(movieDetails.type === 'movie') ? movieData : seriesData }

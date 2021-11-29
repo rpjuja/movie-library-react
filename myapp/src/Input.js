@@ -35,7 +35,7 @@ function Input() {
       <DropdownButton
         variant="outline-secondary"
         // Display chosen type by using ternary operator on type
-        title={(type === "movie" ? "Movies" : "Series")}
+        title={(type === "movie" ? "Movies " : "Series ")}
         onSelect={(event) => selected(event)} >
           <Dropdown.Item eventKey="movie">Movies</Dropdown.Item>
           <Dropdown.Item eventKey="series">Series</Dropdown.Item>
