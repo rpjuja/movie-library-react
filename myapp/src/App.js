@@ -5,16 +5,9 @@ import Input from './Input.js';
 import Movie from './Movie.js'
 import Page from './Page.js'
 import CustomModal from './CustomModal.js';
-import InputContext from './InputContext.js';
+import { InputProvider } from './InputContext.js';
 
 function App() {
-
-  // States to use with input context
-  const [name, setName] = useState('');
-  const [type, setType] = useState('movie');
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [movieDetails, setMovieDetails] = useState({});
   
   // State to use for showing and hiding the modal
   const [showModal, setShowModal] = useState(false);
@@ -22,16 +15,14 @@ function App() {
   return (
     <Container>
       <h1 className="header">Movie Library</h1>
-      <InputContext.Provider 
-      value={{ type, setType, name, setName, page, setPage,
-       totalPages, setTotalPages, movieDetails, setMovieDetails, setShowModal }} >
+      <InputProvider>
         <Input />
-        <Movie />
+        <Movie value={setShowModal}/>
         <Page />
         <CustomModal
         show={showModal}
          onHide={() => setShowModal(false)}/>
-      </InputContext.Provider>
+      </InputProvider>
     </Container>
   );
 }

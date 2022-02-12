@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
-import InputContext from './InputContext';
+import { InputContext } from './InputContext';
 import './App.css';
 
 function Input() {
